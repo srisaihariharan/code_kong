@@ -1,111 +1,84 @@
-# code_kong
+# CodeKong: Alternative Credit Scoring Platform
 
-**Alternative Credit Scoring Platform**
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-A fast, modern frontend built using **Vite**, **TypeScript**, and **Tailwind CSS** to power an alternative credit scoring application.
+A modern financial technology platform providing alternative credit scoring solutions. Built with cutting-edge web technologies for performance and reliability.
 
----
+[![Open in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open%20in%20Browser-blue?logo=github)](https://codespaces.new/srisaihariharan/code_kong)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsrisaihariharan%2Fcode_kong)
 
-##  Features
+## ✨ Features
 
-- **Modern dev stack**: Vite for lightning-fast reloading, TypeScript for type safety, and Tailwind CSS for styling.
-- **Responsive UI**: Mobile-first layout using Tailwind utility classes.
-- **Modular code**: Structured components under `src/` for scalable development.
+- **Lightning-fast development** with Vite tooling
+- **Type-safe architecture** using TypeScript
+- **Responsive UI** built with Tailwind CSS (mobile-first)
+- **Component-based architecture** for maintainability
+- **Modern financial visualizations** for credit data insights
 
----
-
-##  Getting Started
-
-Just follow these steps to run the project locally:
+## 🚀 Getting Started
 
 ### Prerequisites
+- Node.js v14+
+- npm v7+
 
-Make sure you have:
-
-- **Node.js** (v14 or above recommended)
-- **npm** (comes with Node.js)
-
-### Installation & Run
-'''bash
-# 1. Clone the repo
+### Installation
+```bash
+# Clone repository
 git clone https://github.com/srisaihariharan/code_kong.git
 cd code_kong
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Start the development server
+# Start development server
 npm run dev
-After running npm run dev, you'll see something like:
+After running, open your browser at the provided local address (typically http://localhost:5173).
 
-arduino
-Copy
-Edit
-  VITE vX.Y.Z  ready in Xms
-  ➜  Local:   http://localhost:5173/
-Open your browser to http://localhost:5173/ to explore the app live.
-
-
-
-
-
-
-🗂️ Project Structure
+📁 Project Structure
 bash
-Copy
-Edit
 code_kong/
-├── index.html          # Main HTML entry point
-├── package.json        # Project metadata & dependencies
-├── tsconfig.json       # TypeScript configuration
-├── vite.config.ts      # Vite build config
-├── public/             # Static assets
-└── src/                # Main app source code
-    ├── App.tsx         # Root React component
-    ├── main.tsx        # Entry point
-    └── components/     # Reusable components
-
-Available Scripts
+├── public/          # Static assets
+├── src/
+│   ├── assets/      # Images & fonts
+│   ├── components/  # Reusable UI components
+│   │   ├── charts/  # Data visualization
+│   │   ├── forms/   # Credit application forms
+│   │   └── layout/  # Page scaffolding
+│   ├── hooks/       # Custom React hooks
+│   ├── types/       # TypeScript definitions
+│   ├── utils/       # Helper functions
+│   ├── App.tsx      # Root component
+│   └── main.tsx     # Entry point
+├── index.html       # Application shell
+├── tsconfig.json    # TypeScript config
+└── vite.config.ts   # Build configuration
+📜 Scripts
 Command	Description
-npm run dev	Serve with hot reload (development)
-npm run build	Build for production (output to dist/)
-npm run preview	Serve the production build locally
-
-Contributing
+npm run dev	Start dev server (HMR enabled)
+npm run build	Create production build
+npm run preview	Locally test production build
+npm run lint	Run ESLint static analysis
+🤝 Contributing
 Fork the repository
 
-Create a feature branch (git checkout -b feature-name)
+Create your feature branch (git checkout -b feature/new-scoring-algorithm)
 
-Commit your changes (git commit -m "Add feature")
+Commit changes (git commit -m 'Add predictive income model')
 
-Push to your branch (git push origin feature-name)
+Push to branch (git push origin feature/new-scoring-algorithm)
 
-Open a pull request and describe your change
+Open a Pull Request
 
-Contact
-If you’ve got ideas, feedback, or want to collab, feel free to reach out!
+📬 Contact
+Srisai Hariharan
+https://img.shields.io/badge/Twitter-%25231DA1F2.svg?logo=Twitter&logoColor=white
+https://img.shields.io/badge/LinkedIn-%25230077B5.svg?logo=linkedin&logoColor=white
 
-License
-This project is licensed under the MIT License. Feel free to use, modify, and distribute as needed.
+For feature requests or bug reports, please open an issue.
 
-markdown
-Copy
-Edit
-
----
-
-###  How to Use It
-
-1. Copy and paste this template into a new `README.md` in your repo.
-2. Customize sections like "Features" and "Project Structure" to align with your actual codebase—especially what's inside `src/`.
-3. Optionally, add:
-   - **Screenshots** or GIFs for visual clarity.
-   - **Live demo link** if you deploy somewhere (like Vercel).
-   - **Badges** showing build status, license, or framework used.
-
-Let me know if you want help tailoring it further or adding extra sections (like explainability, testing, or deployment tips).
-::contentReference[oaicite:1]{index=1}
-
-
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
 
 
