@@ -27,7 +27,6 @@ Make sure you have:
 
 ### Installation & Run
 
-```bash
 # 1. Clone the repo
 git clone https://github.com/srisaihariharan/code_kong.git
 cd code_kong
@@ -45,6 +44,11 @@ Edit
   VITE vX.Y.Z  ready in Xms
   ➜  Local:   http://localhost:5173/
 Open your browser to http://localhost:5173/ to explore the app live.
+
+
+
+
+
 
 Project Structure
 graphql
