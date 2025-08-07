@@ -38,3 +38,17 @@ npm install
 # 3. Start the development server
 npm run dev
 
+
+code_kong/
+├── index.html            # Main HTML entry point
+├── package.json          # Project metadata & dependencies
+├── tsconfig.json         # TypeScript configuration
+├── vite.config.ts        # Vite build config
+├── tailwind.config.js    # Tailwind CSS setup
+├── postcss.config.js     # PostCSS config (Tailwind integration)
+├── src/                  # Source code (React/Vue/Svelte components?)
+│   └── main.ts           # App bootstrap
+│   └── [...other files]  # Add your structure here
+└── README.md             # <- Add this file
+
+
