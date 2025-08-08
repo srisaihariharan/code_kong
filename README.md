@@ -18,7 +18,7 @@ Check out the live version of this app here:
 - **Component-based architecture** for maintainability
 - **Modern financial visualizations** for credit data insights
 
-##✨ Factors for Credits
+## ✨ Factors for Credits
 - Personal Information
 - Rent Pay History
 - Employment History
@@ -29,6 +29,12 @@ Check out the live version of this app here:
 ### Prerequisites
 - Node.js v14+
 - npm v7+
+
+### 📬 Contact
+-[Linkedin: Prodhosh ](www.linkedin.com/in/prodhoshvs)
+-[Linkedin: Sri sai ](https://www.linkedin.com/in/srisai-hariharan-s-03979736a/)
+-[Linkedin: Gowreesh](https://www.linkedin.com/in/gowreesh/)
+-[Linkedin: Kailash](https://www.linkedin.com/in/helloooo/)
 
   
 
@@ -71,15 +77,6 @@ npm install
 npm run dev
 After running, open your browser at the provided local address (typically http://localhost:5173).
 
-
-
-
-
-📬 Contact
--[Linkedin: Prodhosh ](www.linkedin.com/in/prodhoshvs)
--[Linkedin: Sri sai ](https://www.linkedin.com/in/srisai-hariharan-s-03979736a/)
--[Linkedin: Gowreesh](https://www.linkedin.com/in/gowreesh/)
--[Linkedin: Kailash](https://www.linkedin.com/in/helloooo/)
 
 For feature requests or bug reports, please open an issue.
 
