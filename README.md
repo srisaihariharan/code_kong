@@ -6,8 +6,9 @@
 
 A modern financial technology platform providing alternative credit scoring solutions. Built with cutting-edge web technologies for performance and reliability.
 
-[![Open in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open%20in%20Browser-blue?logo=github)](https://codespaces.new/srisaihariharan/code_kong)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsrisaihariharan%2Fcode_kong)
+Check out the live version of this app here:
+
+[▶️ View the Live App](https://lovely-souffle-001385.netlify.app/)
 
 ## ✨ Features
 
@@ -17,27 +18,23 @@ A modern financial technology platform providing alternative credit scoring solu
 - **Component-based architecture** for maintainability
 - **Modern financial visualizations** for credit data insights
 
+##✨ Factors for Credits
+- Personal Information
+- Rent Pay History
+- Employment History
+- Education Background
+
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js v14+
 - npm v7+
 
-### Installation
+  
+
+## 📁 Project Structure
+
 ```bash
-# Clone repository
-git clone https://github.com/srisaihariharan/code_kong.git
-cd code_kong
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-After running, open your browser at the provided local address (typically http://localhost:5173).
-
-📁 Project Structure
-bash
 code_kong/
 ├── public/          # Static assets
 ├── src/
@@ -54,22 +51,29 @@ code_kong/
 ├── index.html       # Application shell
 ├── tsconfig.json    # TypeScript config
 └── vite.config.ts   # Build configuration
-📜 Scripts
-Command	Description
-npm run dev	Start dev server (HMR enabled)
-npm run build	Create production build
-npm run preview	Locally test production build
-npm run lint	Run ESLint static analysis
-🤝 Contributing
-Fork the repository
 
-Create your feature branch (git checkout -b feature/new-scoring-algorithm)
 
-Commit changes (git commit -m 'Add predictive income model')
+###SnapShots
 
-Push to branch (git push origin feature/new-scoring-algorithm)
 
-Open a Pull Request
+
+
+### Installation
+```bash
+# Clone repository
+git clone https://github.com/srisaihariharan/code_kong.git
+cd code_kong
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+After running, open your browser at the provided local address (typically http://localhost:5173).
+
+
+
+
 
 📬 Contact
 Srisai Hariharan
@@ -78,7 +82,5 @@ https://img.shields.io/badge/LinkedIn-%25230077B5.svg?logo=linkedin&logoColor=wh
 
 For feature requests or bug reports, please open an issue.
 
-📄 License
-Distributed under the MIT License. See LICENSE for more information.
 
 
