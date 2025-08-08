@@ -6,8 +6,8 @@
 
 A modern financial technology platform providing alternative credit scoring solutions. Built with cutting-edge web technologies for performance and reliability.
 
-[![Open in GitHub Codespaces](https://img.shields.io/badge/Codespaces-Open%20in%20Browser-blue?logo=github)](https://codespaces.new/srisaihariharan/code_kong)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsrisaihariharan%2Fcode_kong)
+
+[![Deploy with Vercel]([https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsrisaihariharan%2Fcode_kon](https://lovely-souffle-001385.netlify.app/)g)
 
 ## ✨ Features
 
