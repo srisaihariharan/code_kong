@@ -6,6 +6,10 @@
 
 A modern financial technology platform providing alternative credit scoring solutions. Built with cutting-edge web technologies for performance and reliability.
 
+Check out the live version of this app here:
+
+[▶️ View the Live App](https://lovely-souffle-001385.netlify.app/)
+
 
 [![Deploy with Vercel]([https://lovely-souffle-001385.netlify.app/])
 
