@@ -65,7 +65,7 @@ code_kong/
 
 
 ### Installation
-```bash
+
 # Clone repository
 git clone https://github.com/srisaihariharan/code_kong.git
 cd code_kong
