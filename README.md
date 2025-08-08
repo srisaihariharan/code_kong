@@ -46,8 +46,8 @@ Check out the live version of this app here:
 
 ### SNAPSHOTS OF THE ACUTUAL WEBSITE
 
-![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.26.50.jpeg?raw=true)
 ![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.27.50.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.26.50.jpeg?raw=true)
 ![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.28.44.jpeg?raw=true)
 ![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.29.10.jpeg?raw=true)
 ![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.32.52.jpeg?raw=true)
