@@ -92,14 +92,11 @@ code_kong/
 	├── utils/
 	│   └── userDataFactory.ts # Factory for initial/empty state
 	├── contexts/
-	│   ├── ThemeContext.tsx   # Theme toggle context
-	│   └── AuthContext.tsx    # (Legacy placeholder / removable)
+	│   └── ThemeContext.tsx   # Theme toggle context
 	├── types/
 	│   ├── index.ts           # Shared domain types
 	│   └── chat.ts            # (If retained; unused after auth removal)
-	├── lib/
-	│   ├── supabase.ts        # (Legacy; safe to delete if unused)
-	│   └── gemini.ts          # (Legacy; safe to delete if unused)
+	├── lib/                   # (removed legacy external service clients)
 	└── constants/
 		└── steps.ts           # Ordered definition of multi‑step flow
 ```
