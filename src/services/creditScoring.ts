@@ -2,26 +2,26 @@ import { UserData, CreditScore, ScoreFactor, Recommendation } from '../types';
 
 export class CreditScoringService {
   private calculateRentScore(rentHistory: UserData['rentHistory']): ScoreFactor {
-    const { monthlyRent, rentPeriodMonths, latePayments, earlyPayments, landlordRating } = rentHistory;
+  const { rentPeriodMonths, latePayments, earlyPayments, landlordRating } = rentHistory;
     
     let score = 0;
     
     // Payment consistency (40% weight)
     if (rentPeriodMonths > 0) {
-      const onTimeRate = (rentPeriodMonths - latePayments) / rentPeriodMonths;
+      const safeLate = Math.min(latePayments, rentPeriodMonths);
+      const onTimeRate = Math.max(0, (rentPeriodMonths - safeLate) / rentPeriodMonths);
       score += onTimeRate * 40;
-      
-      // Bonus for early payments
-      const earlyPaymentBonus = Math.min((earlyPayments / rentPeriodMonths) * 10, 10);
+      const safeEarly = Math.min(Math.max(earlyPayments, 0), rentPeriodMonths);
+      const earlyPaymentBonus = Math.min((safeEarly / rentPeriodMonths) * 10, 10);
       score += earlyPaymentBonus;
     }
     
     // Rent period stability (20% weight)
-    const stabilityScore = Math.min(rentPeriodMonths / 24, 1) * 20;
+  const stabilityScore = Math.min(Math.max(rentPeriodMonths, 0) / 24, 1) * 20;
     score += stabilityScore;
     
     // Landlord rating (10% weight)
-    score += (landlordRating / 5) * 10;
+  score += (Math.min(Math.max(landlordRating, 0), 5) / 5) * 10;
     
     return {
       category: 'Rent Payment History',
@@ -32,22 +32,23 @@ export class CreditScoringService {
   }
 
   private calculateUtilityScore(utilityHistory: UserData['utilityHistory']): ScoreFactor {
-    const { averageMonthlyUtilities, utilityPeriodMonths, lateUtilityPayments, utilityTypes } = utilityHistory;
+  const { utilityPeriodMonths, lateUtilityPayments, utilityTypes } = utilityHistory;
     
     let score = 0;
     
     // Payment consistency (50% weight)
     if (utilityPeriodMonths > 0) {
-      const onTimeRate = (utilityPeriodMonths - lateUtilityPayments) / utilityPeriodMonths;
+      const safeLate = Math.min(lateUtilityPayments, utilityPeriodMonths);
+      const onTimeRate = Math.max(0, (utilityPeriodMonths - safeLate) / utilityPeriodMonths);
       score += onTimeRate * 50;
     }
     
     // Utility diversity bonus (20% weight)
-    const diversityBonus = Math.min(utilityTypes.length / 4, 1) * 20;
+  const diversityBonus = Math.min(Math.max(utilityTypes.length, 0) / 4, 1) * 20;
     score += diversityBonus;
     
     // History length (30% weight)
-    const historyScore = Math.min(utilityPeriodMonths / 24, 1) * 30;
+  const historyScore = Math.min(Math.max(utilityPeriodMonths, 0) / 24, 1) * 30;
     score += historyScore;
     
     return {
@@ -64,21 +65,24 @@ export class CreditScoringService {
     let score = 0;
     
     // Cash flow stability (30% weight)
-    const cashFlow = averageMonthlyIncome - averageMonthlyExpenses;
-    const cashFlowRatio = cashFlow / averageMonthlyIncome;
-    score += Math.max(0, Math.min(cashFlowRatio * 30, 30));
+  const safeIncome = Math.max(averageMonthlyIncome, 0);
+  const safeExpenses = Math.max(averageMonthlyExpenses, 0);
+  const cashFlow = safeIncome - safeExpenses;
+  const cashFlowRatio = safeIncome > 0 ? cashFlow / safeIncome : 0;
+  score += Math.max(0, Math.min(cashFlowRatio * 30, 30));
     
     // Savings buffer (25% weight)
-    const monthsOfExpenses = (savingsBalance + checkingBalance) / averageMonthlyExpenses;
-    const savingsScore = Math.min(monthsOfExpenses / 6, 1) * 25;
+  const safeSavings = Math.max(savingsBalance, 0) + Math.max(checkingBalance, 0);
+  const monthsOfExpenses = safeExpenses > 0 ? safeSavings / safeExpenses : 0;
+  const savingsScore = Math.min(Math.max(monthsOfExpenses, 0) / 6, 1) * 25;
     score += savingsScore;
     
     // Account management (25% weight)
-    const overdraftPenalty = Math.max(0, 25 - (overdrafts * 5));
+  const overdraftPenalty = Math.max(0, 25 - (Math.max(overdrafts, 0) * 5));
     score += overdraftPenalty;
     
     // Account age (20% weight)
-    const ageScore = Math.min(accountAgeMonths / 24, 1) * 20;
+  const ageScore = Math.min(Math.max(accountAgeMonths, 0) / 24, 1) * 20;
     score += ageScore;
     
     return {
@@ -95,11 +99,11 @@ export class CreditScoringService {
     let score = 0;
     
     // Job stability (40% weight)
-    const stabilityScore = Math.min(currentJobMonths / 24, 1) * 40;
+  const stabilityScore = Math.min(Math.max(currentJobMonths, 0) / 24, 1) * 40;
     score += stabilityScore;
     
     // Total experience (30% weight)
-    const experienceScore = Math.min(totalWorkExperienceYears / 10, 1) * 30;
+  const experienceScore = Math.min(Math.max(totalWorkExperienceYears, 0) / 10, 1) * 30;
     score += experienceScore;
     
     // Employment type (30% weight)
@@ -109,7 +113,7 @@ export class CreditScoringService {
       'contract': 0.8,
       'self-employed': 0.9
     };
-    score += 30 * typeMultipliers[employmentType];
+  score += 30 * (typeMultipliers[employmentType] ?? 0.7);
     
     return {
       category: 'Employment Stability',
@@ -132,12 +136,15 @@ export class CreditScoringService {
       'Master\'s Degree': 75,
       'Doctoral Degree': 85
     };
-    score += (degreeScores[highestDegree as keyof typeof degreeScores] || 20) * 0.6;
+  score += (degreeScores[highestDegree as keyof typeof degreeScores] || 20) * 0.6;
     
     // Student loan management (40% weight)
     if (hasStudentLoans) {
       // Reasonable loan balance gets points for education investment
-      if (studentLoanBalance < 50000) {
+      if (studentLoanBalance < 0) {
+        // Negative balance doesn't make sense; treat as zero
+        score += 35 * 0.4;
+      } else if (studentLoanBalance < 50000) {
         score += 40 * 0.4;
       } else if (studentLoanBalance < 100000) {
         score += 30 * 0.4;
@@ -220,10 +227,10 @@ export class CreditScoringService {
     
     // Calculate weighted score
     const totalWeight = factors.reduce((sum, factor) => sum + factor.weight, 0);
-    const weightedScore = factors.reduce((sum, factor) => sum + (factor.impact * factor.weight), 0) / totalWeight;
+  const weightedScore = totalWeight > 0 ? (factors.reduce((sum, factor) => sum + (factor.impact * factor.weight), 0) / totalWeight) : 0;
     
     // Convert to standard credit score range (300-850)
-    const score = Math.round(300 + (weightedScore / 100) * 550);
+  const score = Math.round(300 + (Math.min(Math.max(weightedScore, 0), 100) / 100) * 550);
     
     // Determine grade and risk level
     let grade: string;

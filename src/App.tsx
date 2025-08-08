@@ -14,6 +14,7 @@ import EmploymentForm from './components/forms/EmploymentForm';
 import EducationForm from './components/forms/EducationForm';
 import CreditScoreResult from './components/CreditScoreResult';
 import { UserData, CreditScore } from './types';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { CreditScoringService } from './services/creditScoring';
 
 type FormStep = 'welcome' | 'personal' | 'rent' | 'utility' | 'bank' | 'employment' | 'education' | 'result';
@@ -21,56 +22,28 @@ type FormStep = 'welcome' | 'personal' | 'rent' | 'utility' | 'bank' | 'employme
 function AppContent() {
   const { user, loading } = useAuth();
   const [currentStep, setCurrentStep] = useState<FormStep>('welcome');
-  const [userData, setUserData] = useState<UserData>({
+  const createEmptyUserData = (): UserData => ({
     personalInfo: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      dateOfBirth: '',
-      address: '',
-      city: '',
-      state: '',
-      zipCode: ''
+      firstName: '', lastName: '', email: '', phone: '', dateOfBirth: '', address: '', city: '', state: '', zipCode: ''
     },
     rentHistory: {
-      monthlyRent: 0,
-      rentPeriodMonths: 0,
-      latePayments: 0,
-      earlyPayments: 0,
-      landlordRating: 0
+      monthlyRent: 0, rentPeriodMonths: 0, latePayments: 0, earlyPayments: 0, landlordRating: 0
     },
     utilityHistory: {
-      averageMonthlyUtilities: 0,
-      utilityPeriodMonths: 0,
-      lateUtilityPayments: 0,
-      utilityTypes: []
+      averageMonthlyUtilities: 0, utilityPeriodMonths: 0, lateUtilityPayments: 0, utilityTypes: []
     },
     bankData: {
-      averageMonthlyIncome: 0,
-      averageMonthlyExpenses: 0,
-      savingsBalance: 0,
-      checkingBalance: 0,
-      overdrafts: 0,
-      accountAgeMonths: 0
+      averageMonthlyIncome: 0, averageMonthlyExpenses: 0, savingsBalance: 0, checkingBalance: 0, overdrafts: 0, accountAgeMonths: 0
     },
     employmentHistory: {
-      currentJobTitle: '',
-      currentEmployerName: '',
-      currentJobMonths: 0,
-      totalWorkExperienceYears: 0,
-      industryType: '',
-      employmentType: 'full-time'
+      currentJobTitle: '', currentEmployerName: '', currentJobMonths: 0, totalWorkExperienceYears: 0, industryType: '', employmentType: 'full-time'
     },
     educationHistory: {
-      highestDegree: '',
-      graduationYear: 0,
-      fieldOfStudy: '',
-      institutionName: '',
-      hasStudentLoans: false,
-      studentLoanBalance: 0
+      highestDegree: '', graduationYear: 0, fieldOfStudy: '', institutionName: '', hasStudentLoans: false, studentLoanBalance: 0
     }
   });
+
+  const [userData, setUserData] = useState<UserData>(createEmptyUserData());
 
   const [creditScore, setCreditScore] = useState<CreditScore | null>(null);
 
@@ -155,56 +128,7 @@ function AppContent() {
   const handleRestart = () => {
     setCurrentStep('welcome');
     setCreditScore(null);
-    setUserData({
-      personalInfo: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        dateOfBirth: '',
-        address: '',
-        city: '',
-        state: '',
-        zipCode: ''
-      },
-      rentHistory: {
-        monthlyRent: 0,
-        rentPeriodMonths: 0,
-        latePayments: 0,
-        earlyPayments: 0,
-        landlordRating: 0
-      },
-      utilityHistory: {
-        averageMonthlyUtilities: 0,
-        utilityPeriodMonths: 0,
-        lateUtilityPayments: 0,
-        utilityTypes: []
-      },
-      bankData: {
-        averageMonthlyIncome: 0,
-        averageMonthlyExpenses: 0,
-        savingsBalance: 0,
-        checkingBalance: 0,
-        overdrafts: 0,
-        accountAgeMonths: 0
-      },
-      employmentHistory: {
-        currentJobTitle: '',
-        currentEmployerName: '',
-        currentJobMonths: 0,
-        totalWorkExperienceYears: 0,
-        industryType: '',
-        employmentType: 'full-time'
-      },
-      educationHistory: {
-        highestDegree: '',
-        graduationYear: 0,
-        fieldOfStudy: '',
-        institutionName: '',
-        hasStudentLoans: false,
-        studentLoanBalance: 0
-      }
-    });
+    setUserData(createEmptyUserData());
   };
 
   return (
@@ -295,7 +219,9 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <AppContent />
+        <ErrorBoundary>
+          <AppContent />
+        </ErrorBoundary>
       </AuthProvider>
     </ThemeProvider>
   );
