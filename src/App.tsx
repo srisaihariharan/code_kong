@@ -1,10 +1,10 @@
-import React, { useState, useMemo, lazy, Suspense, useCallback } from 'react';
+import { useState, useMemo, lazy, Suspense, useCallback } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+// Auth removed (login page disabled)
 import ThemeToggle from './components/ThemeToggle';
 import UserProfile from './components/UserProfile';
 import ProgressBar from './components/ProgressBar';
-import AuthScreen from './components/auth/AuthScreen';
+// import AuthScreen from './components/auth/AuthScreen';
 import WelcomeScreen from './components/WelcomeScreen';
 // Lazy-loaded heavier components
 const PersonalInfoForm = lazy(() => import('./components/forms/PersonalInfoForm'));
@@ -21,32 +21,13 @@ import { FORM_STEPS, FormStep, getStepIndex } from './constants/steps';
 import { useCreditApplicationForm } from './hooks/useCreditApplicationForm';
 
 function AppContent() {
-  const { user, loading } = useAuth();
   const [currentStep, setCurrentStep] = useState<FormStep>('welcome');
   const { userData, update, reset } = useCreditApplicationForm();
 
   const [creditScore, setCreditScore] = useState<CreditScore | null>(null);
   const creditScoringService = useMemo(() => new CreditScoringService(), []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-300">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="min-h-screen">
-        <ThemeToggle />
-        <AuthScreen />
-      </div>
-    );
-  }
+  // Removed auth gating: always render the flow starting from welcome
 
   const getStepNumber = useCallback((step: FormStep) => getStepIndex(step), []);
 
@@ -193,11 +174,9 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <AuthProvider>
-        <ErrorBoundary>
-          <AppContent />
-        </ErrorBoundary>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AppContent />
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }
