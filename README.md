@@ -54,8 +54,17 @@ code_kong/
 ├── tsconfig.node.json         # TS node / tooling config
 ├── eslint.config.js           # Flat ESLint configuration
 ├── LICENSE                    # MIT license text
-├── README.md                  # Project documentation
-└── src/
+├── README.md
+├── Webpage Snapshots/
+    ├── Banking Information Screenshot.jpeg       # Root snapshot assets (UI examples)
+    ├── Education History Screenshot.jpeg         # Root snapshot assets (UI examples)
+    ├── Employment History Screenshot.jpeg        # Root snapshot assets (UI examples)
+    ├── Financial Coaching Feature Screenshot.jpeg # Root snapshot assets (UI examples)
+    ├── Personal Information Screenshot.jpeg       # Root snapshot assets (UI examples)
+    ├── Rent Payment History Screenshot.jpg       # Root snapshot assets (UI examples)
+    ├── Score Breakdown Screenshot.jpeg           # Root snapshot assets (UI examples)
+    ├── Utility Payment History Screenshot.jpeg                 
+└── src/                       # Project documentation
 	├── main.tsx               # React entrypoint (mount root)
 	├── App.tsx                # App shell & multi‑step flow
 	├── index.css              # Global Tailwind layer imports
@@ -177,13 +186,14 @@ GitHub Actions workflow runs: lint → typecheck → test → build on pushes / 
 <details>
 <summary>Expand gallery</summary>
 
-![Screenshot 1](WhatsApp%20Image%202025-08-08%20at%2007.26.50.jpeg)
-![Screenshot 2](WhatsApp%20Image%202025-08-08%20at%2007.27.50.jpeg)
-![Screenshot 3](WhatsApp%20Image%202025-08-08%20at%2007.28.44.jpeg)
-![Screenshot 4](WhatsApp%20Image%202025-08-08%20at%2007.29.10.jpeg)
-![Screenshot 5](WhatsApp%20Image%202025-08-08%20at%2007.31.02.jpeg)
-![Screenshot 6](WhatsApp%20Image%202025-08-08%20at%2007.31.43.jpeg)
-![Screenshot 7](WhatsApp%20Image%202025-08-08%20at%2007.32.52.jpeg)
+![Personal Information](Personal%20Information%20Screenshot.jpeg)
+![Banking Information](Banking%20Information%20Screenshot.jpeg)
+![Employment History](Employment%20History%20Screenshot.jpeg)
+![Rent Payment History](Rent%20Payment%20History%20Screenshot.jpg)
+![Utility Payment History](Utility%20Payment%20History%20Screenshot.jpeg)
+![Education History](Education%20History%20Screenshot.jpeg)
+![Score Breakdown](Score%20Breakdown%20Screenshot.jpeg)
+![Financial Coaching Feature](Financial%20Coaching%20Feature%20Screenshot.jpeg)
 
 </details>
 
