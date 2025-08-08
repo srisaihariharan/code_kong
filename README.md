@@ -28,9 +28,12 @@ A modern financial technology platform providing alternative credit scoring solu
 ### Prerequisites
 - Node.js v14+
 - npm v7+
+
   
-📁 Project Structure
-bash
+
+## 📁 Project Structure
+
+```bash
 code_kong/
 ├── public/          # Static assets
 ├── src/
@@ -47,6 +50,7 @@ code_kong/
 ├── index.html       # Application shell
 ├── tsconfig.json    # TypeScript config
 └── vite.config.ts   # Build configuration
+
 
 ###SnapShots
 
