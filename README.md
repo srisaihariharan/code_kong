@@ -1,4 +1,5 @@
 # CodeKong: Alternative Credit Scoring Platform
+CodeZilla Hackathon Project
 
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -9,6 +10,12 @@ A modern financial technology platform providing alternative credit scoring solu
 Check out the live version of this app here:
 
 [▶️ View the Live App](https://lovely-souffle-001385.netlify.app/)
+
+## 👥TEAM MEMBERS(4)
+- Prodhosh V.S
+- Gowreesh V T
+- Sri Sai Hariharan
+- Kailash R
 
 ## ✨ Features
 
@@ -29,6 +36,7 @@ Check out the live version of this app here:
 ### Prerequisites
 - Node.js v14+
 - npm v7+
+
 
 ### 📬 Contact
 -[Linkedin: Prodhosh ](www.linkedin.com/in/prodhoshvs)
