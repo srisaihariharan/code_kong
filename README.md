@@ -10,9 +10,6 @@ Check out the live version of this app here:
 
 [▶️ View the Live App](https://lovely-souffle-001385.netlify.app/)
 
-
-[![Deploy with Vercel]([https://lovely-souffle-001385.netlify.app/])
-
 ## ✨ Features
 
 - **Lightning-fast development** with Vite tooling
