@@ -10,6 +10,12 @@ Check out the live version of this app here:
 
 [▶️ View the Live App](https://lovely-souffle-001385.netlify.app/)
 
+## 👥TEAM MEMBERS
+- Prodhosh V.S
+- Gowreesh V T
+- Sri Sai Hariharan
+- Kailash R
+
 ## ✨ Features
 
 - **Lightning-fast development** with Vite tooling
@@ -29,6 +35,7 @@ Check out the live version of this app here:
 ### Prerequisites
 - Node.js v14+
 - npm v7+
+
 
 ### 📬 Contact
 -[Linkedin: Prodhosh ](www.linkedin.com/in/prodhoshvs)
