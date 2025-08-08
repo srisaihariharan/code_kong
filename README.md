@@ -76,9 +76,10 @@ After running, open your browser at the provided local address (typically http:/
 
 
 📬 Contact
-Srisai Hariharan
-https://img.shields.io/badge/Twitter-%25231DA1F2.svg?logo=Twitter&logoColor=white
-https://img.shields.io/badge/LinkedIn-%25230077B5.svg?logo=linkedin&logoColor=white
+-[Linkedin: Prodhosh ](www.linkedin.com/in/prodhoshvs)
+-[Linkedin: Sri sai ](https://www.linkedin.com/in/srisai-hariharan-s-03979736a/)
+-[Linkedin: Gowreesh](https://www.linkedin.com/in/gowreesh/)
+-[Linkedin: Kailash](https://www.linkedin.com/in/helloooo/)
 
 For feature requests or bug reports, please open an issue.
 
