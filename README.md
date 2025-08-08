@@ -1,4 +1,5 @@
 # CodeKong: Alternative Credit Scoring Platform
+CodeZilla Hackathon Project
 
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -10,6 +11,12 @@ Check out the live version of this app here:
 
 [▶️ View the Live App](https://lovely-souffle-001385.netlify.app/)
 
+## 👥TEAM MEMBERS(4)
+- Prodhosh V.S
+- Gowreesh V T
+- Sri Sai Hariharan
+- Kailash R
+
 ## ✨ Features
 
 - **Lightning-fast development** with Vite tooling
@@ -18,7 +25,7 @@ Check out the live version of this app here:
 - **Component-based architecture** for maintainability
 - **Modern financial visualizations** for credit data insights
 
-##✨ Factors for Credits
+## ✨ Factors for Credits
 - Personal Information
 - Rent Pay History
 - Employment History
@@ -30,7 +37,27 @@ Check out the live version of this app here:
 - Node.js v14+
 - npm v7+
 
-  
+
+### 📬 Contact
+-[Linkedin: Prodhosh ](https://www.linkedin.com/in/prodhoshvs/)
+-[Linkedin: Sri sai ](https://www.linkedin.com/in/srisai-hariharan-s-03979736a/)
+-[Linkedin: Gowreesh](https://www.linkedin.com/in/gowreesh/)
+-[Linkedin: Kailash](https://www.linkedin.com/in/helloooo/)
+
+### SNAPSHOTS OF THE ACUTUAL WEBSITE
+
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.27.50.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.26.50.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.28.44.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.29.10.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.31.02.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.32.52.jpeg?raw=true)
+![image alt](https://github.com/srisaihariharan/code_kong/blob/main/WhatsApp%20Image%202025-08-08%20at%2007.31.43.jpeg?raw=true)
+
+
+
+
+
 
 ## 📁 Project Structure
 
@@ -59,7 +86,7 @@ code_kong/
 
 
 ### Installation
-```bash
+
 # Clone repository
 git clone https://github.com/srisaihariharan/code_kong.git
 cd code_kong
@@ -71,14 +98,6 @@ npm install
 npm run dev
 After running, open your browser at the provided local address (typically http://localhost:5173).
 
-
-
-
-
-📬 Contact
-Srisai Hariharan
-https://img.shields.io/badge/Twitter-%25231DA1F2.svg?logo=Twitter&logoColor=white
-https://img.shields.io/badge/LinkedIn-%25230077B5.svg?logo=linkedin&logoColor=white
 
 For feature requests or bug reports, please open an issue.
 

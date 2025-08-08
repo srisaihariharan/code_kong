@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { EducationHistory } from '../../types';
+import { educationHistorySchema, validateWithSchema } from '../../validation/schemas';
 
 interface EducationFormProps {
   data: EducationHistory;
@@ -22,13 +23,32 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
     'Liberal Arts', 'Science', 'Social Sciences', 'Fine Arts', 'Other'
   ];
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [isValid, setIsValid] = useState(false);
+
+  const runValidation = (next: EducationHistory) => {
+    const { valid, errors } = validateWithSchema(educationHistorySchema, next);
+    setErrors(errors);
+    setIsValid(valid);
+  };
+
+  useEffect(() => {
+    runValidation(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onNext();
+    runValidation(data);
+    if (isValid) onNext();
   };
 
   const handleChange = (field: keyof EducationHistory, value: string | number | boolean) => {
-    onChange({ ...data, [field]: value });
+    const next = { ...data, [field]: value };
+    onChange(next);
+    setTouched(t => ({ ...t, [field]: true }));
+    runValidation(next);
   };
 
   return (
@@ -56,6 +76,9 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
               </option>
             ))}
           </select>
+          {touched.highestDegree && errors.highestDegree && (
+            <p className="mt-1 text-xs text-red-600">{errors.highestDegree}</p>
+          )}
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -72,6 +95,9 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
               onChange={(e) => handleChange('graduationYear', parseInt(e.target.value) || 0)}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
+            {touched.graduationYear && errors.graduationYear && (
+              <p className="mt-1 text-xs text-red-600">{errors.graduationYear}</p>
+            )}
           </div>
 
           <div>
@@ -91,6 +117,9 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
                 </option>
               ))}
             </select>
+            {touched.fieldOfStudy && errors.fieldOfStudy && (
+              <p className="mt-1 text-xs text-red-600">{errors.fieldOfStudy}</p>
+            )}
           </div>
         </div>
 
@@ -105,6 +134,9 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
             onChange={(e) => handleChange('institutionName', e.target.value)}
             className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
+          {touched.institutionName && errors.institutionName && (
+            <p className="mt-1 text-xs text-red-600">{errors.institutionName}</p>
+          )}
         </div>
 
         <div>
@@ -153,6 +185,9 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
               onChange={(e) => handleChange('studentLoanBalance', parseFloat(e.target.value) || 0)}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
+            {touched.studentLoanBalance && errors.studentLoanBalance && (
+              <p className="mt-1 text-xs text-red-600">{errors.studentLoanBalance}</p>
+            )}
           </div>
         )}
 
@@ -166,9 +201,10 @@ export default function EducationForm({ data, onChange, onNext, onBack }: Educat
           </button>
           <button
             type="submit"
-            className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+            disabled={!isValid}
+            className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Calculate Score
+            {isValid ? 'Calculate Score' : 'Fix errors'}
           </button>
         </div>
       </form>
