@@ -39,7 +39,7 @@ Check out the live version of this app here:
 
 
 ### 📬 Contact
--[Linkedin: Prodhosh ](www.linkedin.com/in/prodhoshvs)
+-[Linkedin: Prodhosh ](https://www.linkedin.com/in/prodhoshvs/)
 -[Linkedin: Sri sai ](https://www.linkedin.com/in/srisai-hariharan-s-03979736a/)
 -[Linkedin: Gowreesh](https://www.linkedin.com/in/gowreesh/)
 -[Linkedin: Kailash](https://www.linkedin.com/in/helloooo/)
