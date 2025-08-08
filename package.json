@@ -1,8 +1,14 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "code-kong",
+  "description": "Alternative credit scoring multi-step React + Vite application",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srisaihariharan/code_kong.git"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -12,7 +18,9 @@
     "lint": "eslint .",
   "preview": "vite preview",
   "test": "vitest run",
-  "test:watch": "vitest"
+  "test:watch": "vitest",
+  "typecheck": "tsc --noEmit",
+  "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",

@@ -1,4 +1,4 @@
-import { useState, useMemo, lazy, Suspense, useCallback } from 'react';
+import { useState, useMemo, lazy, Suspense, useCallback, useEffect, useRef } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 // Auth removed (login page disabled)
 import ThemeToggle from './components/ThemeToggle';
@@ -30,6 +30,29 @@ function AppContent() {
   // Removed auth gating: always render the flow starting from welcome
 
   const getStepNumber = useCallback((step: FormStep) => getStepIndex(step), []);
+
+  // Prefetch next step's chunk to smooth navigation (small heuristic)
+  useEffect(() => {
+    const prefetchMap: Partial<Record<FormStep, () => void>> = {
+      welcome: () => { import('./components/forms/PersonalInfoForm'); },
+      personal: () => { import('./components/forms/RentHistoryForm'); },
+      rent: () => { import('./components/forms/UtilityHistoryForm'); },
+      utility: () => { import('./components/forms/BankDataForm'); },
+      bank: () => { import('./components/forms/EmploymentForm'); },
+      employment: () => { import('./components/forms/EducationForm'); },
+      education: () => { import('./components/CreditScoreResult'); }
+    };
+    prefetchMap[currentStep]?.();
+  }, [currentStep]);
+
+  // Accessibility: focus management & live announcement
+  const stepContainerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (currentStep !== 'welcome' && stepContainerRef.current) {
+      // Delay to ensure content painted
+      requestAnimationFrame(() => stepContainerRef.current?.focus());
+    }
+  }, [currentStep]);
 
   const handleNext = () => {
     switch (currentStep) {
@@ -90,6 +113,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-blue-600 text-white px-4 py-2 rounded z-50">Skip to content</a>
       <ThemeToggle />
       
       {currentStep === 'welcome' && (
@@ -102,12 +126,13 @@ function AppContent() {
       )}
 
       {currentStep !== 'welcome' && currentStep !== 'result' && (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4">
-          <div className="max-w-4xl mx-auto pt-8">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4" id="main">
+          <div className="max-w-4xl mx-auto pt-8" ref={stepContainerRef} tabIndex={-1} aria-live="polite" aria-label="Credit application step">
             <UserProfile />
             <ProgressBar currentStep={getStepNumber(currentStep)} totalSteps={FORM_STEPS.length - 1} />
+            <div className="sr-only" id="step-status">Step {getStepNumber(currentStep)} of {FORM_STEPS.length - 1}</div>
             
-            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700" role="group" aria-describedby="step-status">
               <Suspense fallback={<div className="py-12 text-center text-gray-600 dark:text-gray-300">Loading step...</div>}>
                 {currentStep === 'personal' && (
                   <PersonalInfoForm
@@ -164,7 +189,9 @@ function AppContent() {
 
       {currentStep === 'result' && creditScore && (
         <Suspense fallback={<div className="p-8 text-center text-gray-600 dark:text-gray-300">Calculating score...</div>}>
-          <CreditScoreResult creditScore={creditScore} onRestart={handleRestart} />
+          <div id="main" ref={stepContainerRef} tabIndex={-1} className="outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
+            <CreditScoreResult creditScore={creditScore} onRestart={handleRestart} />
+          </div>
         </Suspense>
       )}
     </div>
