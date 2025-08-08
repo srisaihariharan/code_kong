@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RentHistory } from '../../types';
+import { rentHistorySchema, validateWithSchema } from '../../validation/schemas';
 
 interface RentHistoryFormProps {
   data: RentHistory;
@@ -9,13 +10,32 @@ interface RentHistoryFormProps {
 }
 
 export default function RentHistoryForm({ data, onChange, onNext, onBack }: RentHistoryFormProps) {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [isValid, setIsValid] = useState(false);
+
+  const runValidation = (next: RentHistory) => {
+    const { valid, errors } = validateWithSchema(rentHistorySchema, next);
+    setErrors(errors);
+    setIsValid(valid);
+  };
+
+  useEffect(() => {
+    runValidation(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onNext();
+    runValidation(data);
+    if (isValid) onNext();
   };
 
   const handleChange = (field: keyof RentHistory, value: string | number) => {
-    onChange({ ...data, [field]: value });
+    const next = { ...data, [field]: value };
+    onChange(next);
+    setTouched(t => ({ ...t, [field]: true }));
+    runValidation(next);
   };
 
   return (
@@ -38,6 +58,9 @@ export default function RentHistoryForm({ data, onChange, onNext, onBack }: Rent
             onChange={(e) => handleChange('monthlyRent', parseFloat(e.target.value) || 0)}
             className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
+          {touched.monthlyRent && errors.monthlyRent && (
+            <p className="mt-1 text-xs text-red-600">{errors.monthlyRent}</p>
+          )}
         </div>
 
         <div>
@@ -52,6 +75,9 @@ export default function RentHistoryForm({ data, onChange, onNext, onBack }: Rent
             onChange={(e) => handleChange('rentPeriodMonths', parseInt(e.target.value) || 0)}
             className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
+          {touched.rentPeriodMonths && errors.rentPeriodMonths && (
+            <p className="mt-1 text-xs text-red-600">{errors.rentPeriodMonths}</p>
+          )}
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -67,6 +93,9 @@ export default function RentHistoryForm({ data, onChange, onNext, onBack }: Rent
               onChange={(e) => handleChange('latePayments', parseInt(e.target.value) || 0)}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
+            {touched.latePayments && errors.latePayments && (
+              <p className="mt-1 text-xs text-red-600">{errors.latePayments}</p>
+            )}
           </div>
 
           <div>
@@ -81,6 +110,9 @@ export default function RentHistoryForm({ data, onChange, onNext, onBack }: Rent
               onChange={(e) => handleChange('earlyPayments', parseInt(e.target.value) || 0)}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             />
+            {touched.earlyPayments && errors.earlyPayments && (
+              <p className="mt-1 text-xs text-red-600">{errors.earlyPayments}</p>
+            )}
           </div>
         </div>
 
@@ -101,6 +133,9 @@ export default function RentHistoryForm({ data, onChange, onNext, onBack }: Rent
             <option value="2">2 - Below average landlord</option>
             <option value="1">1 - Poor landlord</option>
           </select>
+          {touched.landlordRating && errors.landlordRating && (
+            <p className="mt-1 text-xs text-red-600">{errors.landlordRating}</p>
+          )}
         </div>
 
         <div className="flex gap-4 pt-6">
@@ -113,9 +148,10 @@ export default function RentHistoryForm({ data, onChange, onNext, onBack }: Rent
           </button>
           <button
             type="submit"
-            className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+            disabled={!isValid}
+            className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Continue
+            {isValid ? 'Continue' : 'Fix errors'}
           </button>
         </div>
       </form>

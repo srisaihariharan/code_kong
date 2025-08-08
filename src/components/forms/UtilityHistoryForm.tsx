@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { UtilityHistory } from '../../types';
+import { utilityHistorySchema, validateWithSchema } from '../../validation/schemas';
 
 interface UtilityHistoryFormProps {
   data: UtilityHistory;
@@ -9,15 +10,33 @@ interface UtilityHistoryFormProps {
 }
 
 export default function UtilityHistoryForm({ data, onChange, onNext, onBack }: UtilityHistoryFormProps) {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [isValid, setIsValid] = useState(false);
+
+  const runValidation = (next: UtilityHistory) => {
+    const { valid, errors } = validateWithSchema(utilityHistorySchema, next);
+    setErrors(errors);
+    setIsValid(valid);
+  };
+
+  useEffect(() => {
+    runValidation(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const utilityOptions = ['Electric', 'Gas', 'Water', 'Internet', 'Cable/TV', 'Trash', 'Sewer'];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onNext();
+    runValidation(data);
+    if (isValid) onNext();
   };
 
   const handleChange = (field: keyof UtilityHistory, value: string | number | string[]) => {
-    onChange({ ...data, [field]: value });
+    const next = { ...data, [field]: value };
+    onChange(next);
+    setTouched(t => ({ ...t, [field]: true }));
+    runValidation(next);
   };
 
   const handleUtilityToggle = (utility: string) => {
@@ -47,6 +66,9 @@ export default function UtilityHistoryForm({ data, onChange, onNext, onBack }: U
             onChange={(e) => handleChange('averageMonthlyUtilities', parseFloat(e.target.value) || 0)}
             className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
+          {touched.averageMonthlyUtilities && errors.averageMonthlyUtilities && (
+            <p className="mt-1 text-xs text-red-600">{errors.averageMonthlyUtilities}</p>
+          )}
         </div>
 
         <div>
@@ -61,6 +83,9 @@ export default function UtilityHistoryForm({ data, onChange, onNext, onBack }: U
             onChange={(e) => handleChange('utilityPeriodMonths', parseInt(e.target.value) || 0)}
             className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
+          {touched.utilityPeriodMonths && errors.utilityPeriodMonths && (
+            <p className="mt-1 text-xs text-red-600">{errors.utilityPeriodMonths}</p>
+          )}
         </div>
 
         <div>
@@ -75,6 +100,9 @@ export default function UtilityHistoryForm({ data, onChange, onNext, onBack }: U
             onChange={(e) => handleChange('lateUtilityPayments', parseInt(e.target.value) || 0)}
             className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           />
+          {touched.lateUtilityPayments && errors.lateUtilityPayments && (
+            <p className="mt-1 text-xs text-red-600">{errors.lateUtilityPayments}</p>
+          )}
         </div>
 
         <div>
@@ -97,6 +125,9 @@ export default function UtilityHistoryForm({ data, onChange, onNext, onBack }: U
               </button>
             ))}
           </div>
+          {touched.utilityTypes && errors.utilityTypes && (
+            <p className="mt-2 text-xs text-red-600">{errors.utilityTypes}</p>
+          )}
         </div>
 
         <div className="flex gap-4 pt-6">
@@ -109,10 +140,10 @@ export default function UtilityHistoryForm({ data, onChange, onNext, onBack }: U
           </button>
           <button
             type="submit"
-            disabled={data.utilityTypes.length === 0}
+            disabled={!isValid}
             className="flex-1 bg-gradient-to-r from-blue-600 to-emerald-600 text-white py-3 px-6 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Continue
+            {isValid ? 'Continue' : 'Fix errors'}
           </button>
         </div>
       </form>
