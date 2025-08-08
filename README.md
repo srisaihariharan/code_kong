@@ -7,7 +7,7 @@
 A modern financial technology platform providing alternative credit scoring solutions. Built with cutting-edge web technologies for performance and reliability.
 
 
-[![Deploy with Vercel]([https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsrisaihariharan%2Fcode_kon](https://lovely-souffle-001385.netlify.app/)g)
+[![Deploy with Vercel]([https://lovely-souffle-001385.netlify.app/])
 
 ## ✨ Features
 
