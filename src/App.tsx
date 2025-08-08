@@ -283,7 +283,6 @@ function AppContent() {
           </div>
         </div>
       )}
-        )}
 
       {currentStep === 'result' && creditScore && (
         <CreditScoreResult creditScore={creditScore} onRestart={handleRestart} />
